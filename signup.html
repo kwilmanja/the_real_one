@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>GROUPDATESIGNIN</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	<script
+    src="https://code.jquery.com/jquery-3.1.1.js"
+    integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+    crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+		<header>
+			<div id="label-signup">
+				<h1>SIGN-IN<h1>
+			</div>
+		</header>
+
+
+
+		<main>
+			<form id="sign-in">
+				<label for="user">Username:</label>
+       	 		<br>
+				<input id="user" name="user" type="text">
+        		<br>
+        		<label for="pw">Password:</label>
+        		<br>
+				<input id="pw" name="pw" type="password">
+        		<br>
+				<button type="submit" class="btn btn-primary">Submit</button>
+      		</form>
+      		<h5>Don't have an account?<br>Click <a href="createAccount.html">HERE</a> to create one!</h5>
+		</main>
+		<script>     
+				document.getElementById('sign-in').addEventListener('submit', login);   
+				function login() {
+					var accounts = JSON.parse(localStorage.getItem('accounts'));
+					var user = document.getElementById('user').value;
+					var pw = document.getElementById('pw').value;
+					var currentId = -1;
+					for (let i = 0; i < accounts.length; i++){
+						if (accounts[i].username === user){
+							currentId = accounts[i].id;
+						}
+					}
+					if (currentId === -1){
+						alert('Incorrect Username');
+						console.log('incorrect username');
+						
+					}
+					if (currentId >= 0){
+						if (accounts[currentId].password === pw){
+							console.log('correct');
+							success(currentId);
+						} else{
+							alert('Incorrect Password');
+							concole.log('incorrect password');
+						}
+					}
+					console.log(currentId);
+					event.preventDefault();
+				}
+
+				function success(currentId) {
+					localStorage.setItem('id', currentId);
+					window.location = "http://127.0.0.1:5500/index.html"
+				}
+		</script>
+		<footer></footer>
+</body>
+</html>
