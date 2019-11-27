@@ -45,6 +45,7 @@
 					var user = document.getElementById('user').value;
 					var pw = document.getElementById('pw').value;
 					var currentId = -1;
+					localStorage.setItem('id', currentId);
 					for (let i = 0; i < accounts.length; i++){
 						if (accounts[i].username === user){
 							currentId = accounts[i].id;
@@ -70,7 +71,7 @@
 
 				function success(currentId) {
 					localStorage.setItem('id', currentId);
-					window.location = "http://127.0.0.1:5500/index.html"
+					window.location = "http://127.0.0.1:5500/homepage.html"
 				}
 		</script>
 		<footer></footer>
